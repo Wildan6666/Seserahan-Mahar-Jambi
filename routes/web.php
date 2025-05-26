@@ -15,8 +15,10 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+//Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
+Route::resource('products', App\Http\Controllers\ProductController::class);
+
 
 
 Route::get('/dashboard', function () {

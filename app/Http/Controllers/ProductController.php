@@ -18,6 +18,59 @@ class ProductController extends Controller
     $products = Product::latest()->paginate(10);
     return view('admin.products', compact('products'));
 }
+public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    return view('admin.products.edit', compact('product'));
+}
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'stock' => 'required|integer',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
+    $product = Product::findOrFail($id);
+
+    // Update image jika ada
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('images/products'), $filename);
+        
+        // Hapus gambar lama
+        if ($product->image && file_exists(public_path('images/products/' . $product->image))) {
+            unlink(public_path('images/products/' . $product->image));
+        }
+
+        $product->image = $filename;
+    }
+
+    // Update data lainnya
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->stock = $request->stock;
+    $product->save();
+
+    return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
+}
+
+public function destroy($id)
+{
+    $product = Product::findOrFail($id);
+
+    // Hapus gambar dari storage jika ada
+    if ($product->image && file_exists(public_path('images/products/' . $product->image))) {
+        unlink(public_path('images/products/' . $product->image));
+    }
+
+    $product->delete();
+
+    return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
+}
+
 
 
     public function store(Request $request)
