@@ -3,28 +3,39 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\UserProductController;
+//use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-});
 
+Route::get('/products', [UserProductController::class, 'index'])->name('products.index');
+Route::get('/about', fn () => view('users.about'))->name('about');
+Route::get('/cart', fn () => view('users.cart'))->name('users.cart');
+
+
+
+// Produk - public create form, tapi pastikan otorisasi di controller
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-//Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products', [ProductController::class, 'index'])->name('products.index')->middleware('auth');
-Route::resource('products', App\Http\Controllers\ProductController::class);
 
+// Semua produk hanya bisa diakses user yang login
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('products.index');
+    Route::resource('products', ProductController::class);
+});
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if ('Auth'::user()->role === 'admin') {
+        return view('admin.dashboard');
+    } else {
+        return view('dashboard');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// User Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

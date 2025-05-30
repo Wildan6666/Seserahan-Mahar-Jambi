@@ -14,6 +14,7 @@ class ProductController extends Controller
     }
 
     public function index()
+    
 {
     $products = Product::latest()->paginate(10);
     return view('admin.products', compact('products'));
@@ -21,7 +22,8 @@ class ProductController extends Controller
 public function edit($id)
 {
     $product = Product::findOrFail($id);
-    return view('admin.products.edit', compact('product'));
+    return view('products.edit', compact('product'));
+
 }
 public function update(Request $request, $id)
 {
@@ -102,4 +104,6 @@ public function destroy($id)
 
         return redirect()->route('products.create')->with('success', 'Produk berhasil ditambahkan!');
     }
+
+    
 }

@@ -10,8 +10,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+
+    
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+        'redirect.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
