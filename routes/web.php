@@ -6,11 +6,19 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserProductController;
 //use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
+
+Route::get('/order-success', [OrderController::class, 'success'])->name('orders.success');
+
+Route::middleware('auth')->group(function() {
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::post('/checkout', [OrderController::class, 'processCheckout'])->name('checkout.process');
+});
 
 Route::get('/', function () {
     return view('welcome');
