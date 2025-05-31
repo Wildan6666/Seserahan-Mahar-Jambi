@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserProductController;
 //use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
+
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
+Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,8 +19,10 @@ Route::get('/', function () {
 
 Route::get('/products', [UserProductController::class, 'index'])->name('products.index');
 Route::get('/about', fn () => view('users.about'))->name('about');
-Route::get('/cart', fn () => view('users.cart'))->name('users.cart');
-Route::get('/katalog', fn () => view('users.katalog'))->name('users.katalog');
+//Route::get('/cart', fn () => view('users.cart'))->name('users.cart');
+
+Route::get('/katalog', [UserProductController::class, 'index'])->name('users.katalog');
+Route::get('/katalog/{slug}', [UserProductController::class, 'show'])->name('users.produk.show');
 
 
 
