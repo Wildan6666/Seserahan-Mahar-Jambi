@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::get('/products', [UserProductController::class, 'index'])->name('products.index');
 Route::get('/about', fn () => view('users.about'))->name('about');
 Route::get('/cart', fn () => view('users.cart'))->name('users.cart');
+Route::get('/katalog', fn () => view('users.katalog'))->name('users.katalog');
 
 
 
