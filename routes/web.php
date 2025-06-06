@@ -16,11 +16,12 @@ Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
 
-Route::get('/order-success', [OrderController::class, 'success'])->name('orders.success');
+Route::get('/order-success', [OrderController::class, 'success'])->name('users.order-success');
 
 Route::middleware('auth')->group(function() {
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::post('/checkout', [OrderController::class, 'processCheckout'])->name('checkout.process');
+    Route::post('/checkout/process', [OrderController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('/orders/success', [OrderController::class, 'success'])->name('users.payment');
 });
 
 Route::get('/', function () {
