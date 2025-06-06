@@ -7,6 +7,9 @@ use App\Http\Controllers\UserProductController;
 //use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
@@ -43,14 +46,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
 });
 
-
 Route::get('/dashboard', function () {
-    if ('Auth'::user()->role === 'admin') {
-        return view('admin.dashboard');
-    } else {
-        return view('dashboard');
+    if (Auth::user()->role === 'admin') {
+        return view('admin.dashboard'); // jika admin, arahkan ke dashboard admin
     }
+
+    $products = Product::latest()->take(4)->get(); // ambil 4 produk terbaru untuk user
+    return view('dashboard', compact('products'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 // User Profile
 Route::middleware('auth')->group(function () {
