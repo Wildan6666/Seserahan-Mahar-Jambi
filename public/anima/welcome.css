@@ -1,0 +1,177 @@
+.landing-page {
+  background-color: #ffede1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.landing-page .div {
+  background-color: #ffede1;
+  overflow: hidden;
+  width: 1599px;
+  height: 1080px;
+  position: relative;
+}
+
+.landing-page .overlap-group {
+  position: absolute;
+  width: 1966px;
+  height: 688px;
+  top: 469px;
+  left: -154px;
+}
+
+.landing-page .rectangle {
+  position: absolute;
+  width: 1966px;
+  height: 380px;
+  top: 308px;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.landing-page .vector {
+  position: absolute;
+  width: 1599px;
+  height: 1px;
+  top: 538px;
+  left: 154px;
+}
+
+.landing-page .shopaholics-shopper {
+  position: absolute;
+  width: 554px;
+  height: 477px;
+  top: 34px;
+  left: 154px;
+}
+
+.landing-page .shopaholics-online {
+  position: absolute;
+  width: 887px;
+  height: 511px;
+  top: 0;
+  left: 766px;
+}
+
+.landing-page .overlap {
+  position: absolute;
+  width: 991px;
+  height: 204px;
+  top: 169px;
+  left: 116px;
+}
+
+.landing-page .logo {
+  position: absolute;
+  width: 762px;
+  height: 128px;
+  top: 0;
+  left: 0;
+}
+
+.landing-page .text-wrapper {
+  position: absolute;
+  width: 760px;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-Black", Helvetica;
+  font-weight: 900;
+  color: #f47458;
+  font-size: 96px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.landing-page .div-wrapper {
+  width: 503px;
+  height: 60px;
+  top: 113px;
+  position: absolute;
+  left: 11px;
+}
+
+.landing-page .text-wrapper-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #f47458;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.landing-page .logo-2 {
+  width: 980px;
+  height: 36px;
+  top: 168px;
+  position: absolute;
+  left: 11px;
+}
+
+.landing-page .p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-Light", Helvetica;
+  font-weight: 300;
+  color: #f47458;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.landing-page .button {
+  all: unset;
+  box-sizing: border-box;
+  position: absolute;
+  width: 150px;
+  height: 46px;
+  top: 413px;
+  left: 126px;
+  background-color: #f2af3f;
+  border-radius: 23px;
+}
+
+.landing-page .group {
+  position: relative;
+  width: 101px;
+  height: 24px;
+  top: 11px;
+  left: 22px;
+}
+
+.landing-page .text-wrapper-3 {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.landing-page .ant-design-swap-left {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  left: 75px;
+}
+
+.landing-page .group-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  position: absolute;
+  width: 150px;
+  height: 46px;
+  top: 413px;
+  left: 293px;
+  background-color: #f2af3f;
+  border-radius: 23px;
+}

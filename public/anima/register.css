@@ -1,0 +1,213 @@
+/* public/anima/register.css */
+.sign-up {
+  background-color: #ffede1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.sign-up .overlap-wrapper {
+  background-color: #ffede1;
+  width: 1599px;
+  height: 1080px;
+}
+
+.sign-up .overlap {
+  position: relative;
+  height: 1080px;
+}
+
+.sign-up .rectangle {
+  position: absolute;
+  width: 1165px;
+  height: 1080px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+}
+
+.sign-up .mask-group {
+  position: absolute;
+  width: 1165px;
+  height: 1080px;
+  top: 0;
+  left: 0;
+}
+
+.sign-up .vector {
+  position: absolute;
+  width: 1599px;
+  height: 1px;
+  top: 1007px;
+  left: 0;
+}
+
+.sign-up .group {
+  position: absolute;
+  width: 578px;
+  height: 741px;
+  top: 270px;
+  left: 1021px;
+}
+
+.sign-up .div {
+  position: absolute;
+  width: 598px;
+  height: 747px;
+  top: 167px;
+  left: 244px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 19px 40px #0000000d;
+}
+
+.sign-up .text {
+  position: absolute;
+  width: 218px;
+  height: 84px;
+  top: 326px;
+  left: 293px;
+}
+
+.sign-up .text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 56px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.sign-up .logo {
+  position: absolute;
+  width: 453px;
+  height: 54px;
+  top: 270px;
+  left: 293px;
+}
+
+.sign-up .text-wrapper-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #f47458;
+  font-size: 36px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* Posisi untuk Field ke-1 (Nama Lengkap) */
+.sign-up .name-field {
+  position: absolute;
+  width: 478px;
+  height: 77px;
+  top: 422px;
+  left: 293px;
+}
+
+/* Posisi untuk Field ke-2 (Email) */
+.sign-up .email-field {
+  position: absolute;
+  width: 478px;
+  height: 77px;
+  top: 520px;
+  left: 293px;
+}
+
+/* Posisi untuk Field ke-3 (Password) */
+.sign-up .password-field {
+  position: absolute;
+  width: 478px;
+  height: 77px;
+  top: 618px;
+  left: 293px;
+}
+
+/* Posisi untuk Field ke-4 (Verify Password) */
+.sign-up .verify-password-field {
+  position: absolute;
+  width: 478px;
+  height: 77px;
+  top: 716px;
+  left: 293px;
+}
+
+.sign-up .group-2 {
+  position: relative;
+  width: 482px;
+  height: 77px;
+}
+
+.sign-up .overlap-group {
+  position: absolute;
+  width: 478px;
+  height: 46px;
+  top: 31px;
+  left: 0;
+  background-color: #fff6f3;
+  border-radius: 4px;
+}
+
+.sign-up .text-wrapper-4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Poppins-Light", Helvetica;
+  font-weight: 300;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.sign-up .button {
+  all: unset;
+  box-sizing: border-box;
+  position: absolute;
+  width: 478px;
+  height: 46px;
+  top: 814px;
+  left: 293px;
+  background-color: #f2af3f;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sign-up .button .text-wrapper-6 {
+  font-family: "Poppins-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.sign-up .sign-in {
+    position: absolute;
+    width: 300px;
+    height: 24px;
+    top: 875px;
+    left: 33%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.sign-up .sign-in .already-have-an, .sign-up .sign-in .span, .sign-up .sign-in .text-wrapper-7 {
+    font-family: "Poppins-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 16px;
+}
+
+.sign-up .sign-in .text-wrapper-7 {
+    font-weight: 600; /* SemiBold */
+    color: #f47458;
+    text-decoration: none;
+}
