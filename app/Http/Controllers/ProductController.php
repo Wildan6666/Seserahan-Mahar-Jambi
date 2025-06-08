@@ -54,6 +54,7 @@ public function update(Request $request, $id)
     $product->name = $request->name;
     $product->price = $request->price;
     $product->stock = $request->stock;
+     $product->description = $request->description;
     $product->save();
 
     return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');

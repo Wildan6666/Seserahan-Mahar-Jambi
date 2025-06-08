@@ -37,9 +37,61 @@
             </div>
         </main>
 
-        <!-- Optional Footer -->
-        <footer class="bg-white border-t mt-8 py-4 text-center text-sm text-gray-500">
-            &copy; {{ date('Y') }} Mahar Jambi. All rights reserved.
+        <!-- Footer -->
+        <footer class="bg-slate-200 text-gray-700 py-8">
+            <div class="max-w-7xl mx-auto px-6 sm:px-12">
+                <!-- Footer Content Container -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center sm:text-left">
+                    <!-- Logo and Description Section -->
+                    <div class="flex flex-col items-center sm:items-start">
+                        <div class="flex items-center mb-4 justify-center sm:justify-start">
+                            <div class="header-logo w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                                <span class="font-['Pacifico'] text-white text-2xl">MS</span>
+                            </div>
+                            <span class="ml-2 font-bold text-gray-800 text-2xl">Mahar Seserahan Jambi</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Hadirkan kenangan indah pernikahan dengan mahar kustom.</p>
+                    </div>
+
+                    <!-- Product Links Section -->
+                    <div class="flex flex-col">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Produk Unggulan</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-600 hover:text-primary transition text-sm">Mahar Kayu</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-primary transition text-sm">Mahar Akrilik</a></li>
+                            <li><a href="#" class="text-gray-600 hover:text-primary transition text-sm">Mahar Emas</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Information Section -->
+                    <div class="flex flex-col">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Kontak Kami</h3>
+                        <div class="space-y-2">
+                            <p class="text-gray-600 text-sm">Jl. Mawar No. 123, Kota Jambi</p>
+                            <p class="text-gray-600 text-sm">Telepon: +62 812 3456 7890</p>
+                            <p class="text-gray-600 text-sm">Email: <a href="mailto:info@maharkustom.com" class="hover:text-primary">info@maharkustom.com</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links Section -->
+                    <div class="flex justify-center space-x-6 mt-6 sm:mt-0">
+                        <a href="https://wa.me/+6281234567890" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition" aria-label="WhatsApp">
+                            <i class="ri-whatsapp-fill text-white text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/maharkustom" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition" aria-label="Instagram">
+                            <i class="ri-instagram-fill text-white text-2xl"></i>
+                        </a>
+                        <a href="mailto:info@maharkustom.com" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition" aria-label="Email">
+                            <i class="ri-mail-line text-white text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Copyright Section -->
+                <div class="pt-6 border-t border-gray-300 text-center mt-8">
+                    <p class="text-gray-600 text-sm">&copy; {{ date('Y') }} Mahar Seserahan Jambi. All rights reserved.</p>
+                </div>
+            </div>
         </footer>
     </div>
 </body>

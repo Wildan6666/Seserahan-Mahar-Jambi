@@ -52,7 +52,7 @@
                     <span class="px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-xs font-medium">Menunggu</span>
                 </td>
                 <td class="px-4 py-2">
-                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                    <a href="#" class="text-bluze-600 hover:underline">Edit</a>
                 </td>
             </tr>
         </tbody>

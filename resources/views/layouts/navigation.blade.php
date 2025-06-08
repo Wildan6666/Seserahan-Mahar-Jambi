@@ -1,85 +1,100 @@
 <style>
-/* Navbar Light Mode Customizations */
-nav.bg-white {
-    background-color: #fff;
-    border-color: #e5e7eb; /* border-gray-200 */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
+    nav {
+        background-color: #f1f5f9; /* Tailwind: slate-100 */
+        border-bottom: 1px solid #e2e8f0; /* Tailwind: slate-200 */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
 
-/* Jarak antar menu di desktop */
-nav .sm\:space-x-10 > * + * {
-    margin-left: 2.5rem; /* 10 spacing */
-}
+    nav a {
+        transition: all 0.2s ease-in-out;
+        border-radius: 0.375rem;
+        padding: 0.5rem 0.75rem;
+        color: #334155; /* slate-700 */
+    }
 
-/* Push menu kanan */
-nav .ms-auto {
-    margin-left: auto !important;
-}
+    nav a:hover {
+        background-color: #bbf7d0; /* light teal (more subtle green) */
+        color: #16a34a; /* teal-500 (lighter green for hover) */
+    }
 
-/* Hover warna link */
-nav a:hover {
-    color: #2563eb; /* blue-600 */
-}
+    nav a.active {
+        background-color: #d1fae5; /* lighter teal for active background */
+        color: #16a34a; /* teal-500 for active text */
+        border-bottom: 2px solid #16a34a; /* teal-500 for border */
+    }
 
-/* Dropdown button text color */
-nav button.inline-flex.items-center {
-    color: #374151; /* gray-700 */
-}
+    /* Dropdown & mobile toggle button */
+    nav button.inline-flex.items-center {
+        color: #334155; /* slate-700 */
+    }
 
-/* Hover dropdown button */
-nav button.inline-flex.items-center:hover {
-    color: #1d4ed8; /* blue-700 */
-    background-color: #f3f4f6; /* gray-100 */
-}
+    nav button.inline-flex.items-center:hover {
+        background-color: #e2e8f0; /* slate-200 */
+        color: #16a34a; /* teal-500 */
+    }
 
-/* Mobile menu background */
-nav div.sm\:hidden {
-    background-color: #fff;
-}
+    /* Mobile menu background */
+    nav div.sm\:hidden {
+        background-color: #f8fafc; /* gray-50 */
+    }
 
-/* Mobile nav links */
-nav .sm\:hidden a:hover {
-    background-color: #e0e7ff; /* blue-100 */
-    color: #1e40af; /* blue-800 */
-}
-
-
-
+    nav .sm\:hidden a:hover {
+        background-color: #bbf7d0; /* light teal for hover */
+        color: #16a34a; /* teal-500 */
+    }
 </style>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-200 shadow-sm">
-    <!-- Primary Navigation Menu -->
+
+
+
+@php
+    function navClass($isActive) {
+        return ($isActive ? 'active ' : '') . 
+               'inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 border-transparent text-gray-700 hover:text-teal-600 hover:border-teal-300 hover:bg-teal-50 transition duration-150 ease-in-out group';
+    }
+@endphp
+
+
+
+<nav x-data="{ open: false }" class="bg-slate-200 text-gray-700 border-b border-slate-300 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
             <div class="flex items-center">
-                <!-- Text Logo -->
-                <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-white-800 select-none">
+                <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800 select-none">
                     Mahar Jambi
                 </a>
             </div>
 
-            <!-- Navigation Links -->
             <div class="hidden sm:flex sm:items-center sm:space-x-8 ms-auto">
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
-                <x-nav-link href="{{ route('users.katalog') }}">
+                <a href="{{ route('dashboard') }}"
+                   class="{{ navClass(request()->routeIs('dashboard')) }}">
+                    Dashboard
+                </a>
+
+                <a href="{{ route('users.katalog') }}"
+                   class="{{ navClass(request()->routeIs('users.katalog')) }}">
                     Product
-                </x-nav-link>
-                <x-nav-link href="{{ route('about') }}">
+                </a>
+
+                <a href="{{ route('about') }}"
+                   class="{{ navClass(request()->routeIs('about')) }}">
                     About Us
-                </x-nav-link>
-                <x-nav-link href="{{ route('users.cart') }}" class="relative flex items-center">
-                    <svg class="w-5 h-5 mr-1 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
-                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-5h-4" />
-                    </svg>
-                    Keranjang
-                </x-nav-link>
+                </a>
+
+                <a href="{{ route('users.cart') }}"
+                   class="{{ navClass(request()->routeIs('users.cart')) }}">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-1 text-gray-600 group-hover:text-blue-600 transition"
+                             fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-5h-4" />
+                        </svg>
+                        Keranjang
+                    </div>
+                </a>
             </div>
 
-            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
@@ -87,7 +102,8 @@ nav .sm\:hidden a:hover {
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-600 bg-white hover:text-gray-800 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
                             <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
                                           d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                           clip-rule="evenodd" />
@@ -134,13 +150,13 @@ nav .sm\:hidden a:hover {
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 Dashboard
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('users.katalog') }}">
+            <x-responsive-nav-link :href="route('users.katalog')" :active="request()->routeIs('users.katalog')">
                 Product
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('about') }}">
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
                 About Us
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('users.cart') }}">
+            <x-responsive-nav-link :href="route('users.cart')" :active="request()->routeIs('users.cart')">
                 Keranjang
             </x-responsive-nav-link>
         </div>
