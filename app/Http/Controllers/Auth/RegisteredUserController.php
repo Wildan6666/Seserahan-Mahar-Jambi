@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+// Jangan lupa tambahkan 'use' di bagian atas file controller
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
@@ -29,12 +31,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
+    'email' => [
+        'required', 
+        'string', 
+        'lowercase', 
+        'email', 
+        'max:255', 
+        Rule::unique(User::class) // Lebih ekspresif dan aman dari typo
+    ],
+    'password' => [
+        'required', 
+        'confirmed', 
+        Rules\Password::min(8) // Menggunakan object Password, lebih modern
+            // ->letters()       // Anda bisa tambahkan aturan lain dengan mudah
+            // ->mixedCase()     // Contoh: Wajib ada huruf besar & kecil
+            // ->numbers()       // Contoh: Wajib ada angka
+            // ->symbols()       // Contoh: Wajib ada simbol
+            // ->uncompromised() // Cek apakah password pernah bocor (butuh koneksi internet)
+    ],
+]);
+// dd($request->all());
+// dd($error);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
