@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserProductController;
-//use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
@@ -16,11 +16,13 @@ Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
 Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
 
-Route::get('/order-success', [OrderController::class, 'success'])->name('orders.success');
+Route::get('/order-success', [OrderController::class, 'success'])->name('users.order-success');
+Route::get('/check-payment/{orderId}', [OrderController::class, 'checkPaymentStatus']);
 
 Route::middleware('auth')->group(function() {
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::post('/checkout', [OrderController::class, 'processCheckout'])->name('checkout.process');
+    Route::post('/checkout/process', [OrderController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('/orders/success', [OrderController::class, 'success'])->name('users.payment');
 });
 
 Route::get('/', function () {
@@ -63,5 +65,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/orders', [AdminController::class, 'index'])->name('admin.orders');
+    Route::post('/orders/refresh', [OrderController::class, 'updateorder'])->name('admin.orders.refresh');
+});
+
+
+
+
 
 require __DIR__.'/auth.php';

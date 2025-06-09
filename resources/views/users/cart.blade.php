@@ -1,7 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        Keranjang Belanja
-    </x-slot>
 
     @if (session('success'))
         <div class="mb-4 text-green-600">{{ session('success') }}</div>

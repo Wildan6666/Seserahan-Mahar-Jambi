@@ -1,7 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-800">Checkout</h1>
-    </x-slot>
+
 
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         @if(session('error'))
