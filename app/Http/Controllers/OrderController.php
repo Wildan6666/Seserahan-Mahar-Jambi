@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -113,6 +114,7 @@ public function checkPaymentStatus($orderId)
         Config::$isSanitized = true;
         Config::$is3ds = true;
         $status = Transaction::status($orderId);
+        
 
        return $status->transaction_status; // Kembalikan langsung string status
     } catch (\Exception $e) {
@@ -141,4 +143,55 @@ public function updateOrder()
         $snapToken = $this->snapToken; 
         return view('users.order-success', compact('snapToken'));
     }
+
+    public function myOrders()
+{
+     $orders = auth()->user()->orders()->with('items.product')->latest()->paginate(10);
+    return view('users.cekpesanan', compact('orders'));
 }
+
+// OrderController.php
+public function cancel($orderId)
+{
+
+     $order = auth()->user()->orders()->find($orderId);
+
+    // Jika order tidak ditemukan atau pesanan sudah dibatalkan
+    if (!$order || $order->status === 'cancel') {
+        return redirect()->back()->with('error', 'Pesanan tidak ditemukan atau sudah dibatalkan.');
+    }
+
+    // Ubah status pesanan menjadi cancelled
+    $order->status = 'cancel';
+    $order->save();
+    // Cari semua item pesanan berdasarkan order_id dan pastikan pesanan milik user yang sedang login
+    $order_items = auth()->user()->orders()->where('id', $orderId)->first()?->items;
+
+    // Jika order_items tidak ditemukan atau sudah dibatalkan
+    if (!$order_items) {
+        return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
+    }
+
+    // Perbarui status semua item dalam pesanan menjadi cancelled
+    foreach ($order_items as $item) {
+        if ($item->status !== 'cancel') {
+            $item->status = 'cancel';
+            $item->save(); // Simpan perubahan status
+        }
+    }
+
+    // Redirect kembali dengan pesan sukses
+    return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan.');
+}
+
+
+
+
+
+
+    
+}
+
+
+
+

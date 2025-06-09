@@ -71,6 +71,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/orders/refresh', [OrderController::class, 'updateorder'])->name('admin.orders.refresh');
 });
 
+Route::get('/pesanan-saya', [OrderController::class, 'myOrders'])->name('users.cekpesanan');
+Route::patch('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+
+
 
 
 
