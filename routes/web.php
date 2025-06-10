@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 
@@ -48,15 +49,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
 });
 
+Route::middleware(['auth', 'verified','admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});
+
+
 Route::get('/dashboard', function () {
     if (Auth::user()->role === 'admin') {
-        return view('admin.dashboard'); // jika admin, arahkan ke dashboard admin
+        return redirect()->route('admin.dashboard');
     }
 
-    $products = Product::latest()->take(4)->get(); // ambil 4 produk terbaru untuk user
+    $products = Product::latest()->take(4)->get();
     return view('dashboard', compact('products'));
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 
 
 // User Profile
@@ -75,8 +80,11 @@ Route::get('/pesanan-saya', [OrderController::class, 'myOrders'])->name('users.c
 Route::patch('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
 
-
-
+Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/usermanajemen', [UserController::class, 'index'])->name('admin.usermanajemen');
+    Route::put('/usermanajemen/{user}', [UserController::class, 'update'])->name('admin.usermanajemen.update');
+    Route::delete('/usermanajemen/{user}', [UserController::class, 'destroy'])->name('admin.usermanajemen.destroy');
+});
 
 
 require __DIR__.'/auth.php';

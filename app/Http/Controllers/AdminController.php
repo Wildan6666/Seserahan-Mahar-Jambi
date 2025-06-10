@@ -7,31 +7,80 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        // Mengambil statistik untuk dashboard
-        $totalUsers = User::count(); // Total pengguna terdaftar
-        $activeUsers = User::where('last_login', '>', now()->subDays(30))->count(); // Pengguna aktif dalam 30 hari terakhir
-        $totalOrdersToday = Order::whereDate('created_at', today())->count(); // Pesanan hari ini
-        $totalRevenueToday = Order::whereDate('created_at', today())->sum('total_amount'); // Pendapatan hari ini
-        $totalProducts = Product::count(); // Jumlah produk yang tersedia
+        
+    $userCount = User::where('role', 'user')->count();
 
-        // Kirim data ke view dashboard
-        return view('admin.dashboard', compact(
-            'totalUsers',
-            'activeUsers',
-            'totalOrdersToday',
-            'totalRevenueToday',
-            'totalProducts'
-        ));
+    // Total pesanan (opsional: hanya yang berstatus selain 'dibatalkan')
+    $orderCount = Order::count();
+
+    // Total pendapatan dari pesanan dengan status 'paid' atau 'completed'
+    $totalRevenue = Orderitem::whereIn('status', ['settlement'])->sum('price');
+
+    // Produk terlaris
+    $topProduct = OrderItem::select('product_id', DB::raw('SUM(quantity) as total_sold'))
+        ->groupBy('product_id')
+        ->orderByDesc('total_sold')
+        ->first();
+
+    $topProductName = $topProduct
+        ? Product::find($topProduct->product_id)->name
+        : '-';
+
+    
+        //grafik penjualan bulanan
+    $monthlySales = OrderItem::selectRaw('MONTH(created_at) as month, SUM(price) as total')
+        ->whereIn('status', ['settlement'])
+        ->where('created_at', '>=', now()->subMonths(6))
+        ->groupByRaw('MONTH(created_at)')
+        ->pluck('total', 'month');
+
+      // data dummy untuk bulan kosong
+   $salesData = [
+    'labels' => [],
+    'data' => [],
+];
+
+for ($i = 5; $i >= 0; $i--) {
+    $date = Carbon::now()->subMonths($i);
+    $month = (int) $date->format('n'); // bulan dalam angka 1–12
+    $label = $date->format('M');       // contoh: Jan, Feb, dst
+
+    $salesData['labels'][] = $label;
+    $salesData['data'][] = $monthlySales->get($month, 0); // pakai ->get() untuk Collection
+}   
+
+    //latest order
+    $latestOrders = Order::with('user')
+    ->orderByDesc('created_at')
+    ->take(5)
+    ->get();
+
+    //low stock
+    $lowStockProducts = Product::where('stock', '<', 5)
+    ->orderBy('stock', 'asc')
+    ->get();
+
+
+
+     
+    return view('admin.dashboard', compact('userCount', 'orderCount', 'totalRevenue', 'topProductName','salesData','latestOrders','lowStockProducts'));
     }
 
     public function index()
     {
         $orderItems = OrderItem::with('user')->latest()->paginate(10);
         return view('admin.orders', compact('orderItems'));
+    }
+
+    public function cekrole()
+    {
+
     }
 }

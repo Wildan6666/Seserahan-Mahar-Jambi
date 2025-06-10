@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Http\Middleware\RedirectIfNotAdmin;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Route::middleware('web')
+        ->group(function () {
+            Route::get('/dashboard', function () {
+                // ...
+            })->middleware(['auth', 'verified']);
+        });
+
+    // ✅ Daftarkan middleware alias "admin"
+        Route::aliasMiddleware('admin', RedirectIfNotAdmin::class);
     }
 }
