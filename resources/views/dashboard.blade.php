@@ -26,7 +26,7 @@
 <body class="bg-white">
     
     <!-- Hero Section -->
-    <section class="hero-bg">
+    <section class="hero-bg bg-gradient-to-r from-gray-300 to-white">
         <div class="container mx-auto px-4 sm:px-6 py-12">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 mb-8 md:mb-0">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="w-full md:w-1/2 flex justify-center">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=700&q=80" alt="Mahar Kustom" class="rounded-lg shadow-lg w-full max-w-md">
+                        <img src="https://cf.shopee.co.id/file/f028b46fb2ca09ba3892928dc358532f" alt="Mahar Kustom" class="rounded-lg shadow-lg w-full max-w-md">
                         <a href="#" class="absolute bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">DETAILS</a>
                     </div>
                 </div>

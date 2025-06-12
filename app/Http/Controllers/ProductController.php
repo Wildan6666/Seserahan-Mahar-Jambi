@@ -106,5 +106,16 @@ public function destroy($id)
         return redirect()->route('products.create')->with('success', 'Produk berhasil ditambahkan!');
     }
 
+
+ public function ajaxSearch(Request $request)
+{
+    $query = $request->get('query');
+
+    $products = Product::where('name', 'like', '%' . $query . '%')->get();
+
+    return response()->json($products);
+}
+
+
     
 }

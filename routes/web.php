@@ -47,6 +47,8 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/products', [ProductController::class, 'index'])->name('products.index');
     Route::resource('products', ProductController::class);
+    Route::get('/admin/products/search', [ProductController::class, 'ajaxSearch'])->name('products.ajax-search');
+
 });
 
 Route::middleware(['auth', 'verified','admin'])->group(function () {
@@ -77,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/pesanan-saya', [OrderController::class, 'myOrders'])->name('users.cekpesanan');
-Route::patch('/orders/{id}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+Route::patch('/orders/{item}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 
 
 Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(function () {

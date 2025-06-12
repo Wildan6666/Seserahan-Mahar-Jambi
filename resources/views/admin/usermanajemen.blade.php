@@ -17,36 +17,47 @@
     @endif
 
     <div class="overflow-x-auto bg-white shadow rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th class="px-4 py-2">Nama</th>
-                    <th class="px-4 py-2">Email</th>
-                    <th class="px-4 py-2">Role</th>
-                    <th class="px-4 py-2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($users as $user)
-                <tr>
-                    <td class="px-4 py-2">{{ $user->id }}</td>
-                    <td class="px-4 py-2">{{ $user->name }}</td>
-                    <td class="px-4 py-2">{{ $user->email }}</td>
-                    <td class="px-4 py-2 capitalize">{{ $user->role }}</td>
-                    <td class="px-4 py-2 flex gap-2">
-                        <button onclick='openEditModal(@json($user))' class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Edit</button>
-                        <form method="POST" action="{{ route('admin.usermanajemen.destroy', $user) }}" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+    <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+                <th class="px-4 py-3 text-left font-semibold">ID</th>
+                <th class="px-4 py-3 text-left font-semibold">Nama</th>
+                <th class="px-4 py-3 text-left font-semibold">Email</th>
+                <th class="px-4 py-3 text-left font-semibold">Role</th>
+                <th class="px-4 py-3 text-left font-semibold">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+            @foreach($users as $user)
+            <tr class="hover:bg-gray-50 transition">
+                <td class="px-4 py-3 text-gray-700">{{ $user->id }}</td>
+                <td class="px-4 py-3 text-gray-800">{{ $user->name }}</td>
+                <td class="px-4 py-3 text-gray-700">{{ $user->email }}</td>
+                <td class="px-4 py-3 capitalize text-gray-600">{{ $user->role }}</td>
+                <td class="px-4 py-3 whitespace-nowrap">
+                    <div class="flex items-center gap-2">
+                        <button onclick='openEditModal(@json($user))'
+                                class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition text-xs font-medium">
+                             Edit
+                        </button>
+
+                        <form method="POST" action="{{ route('admin.usermanajemen.destroy', $user) }}"
+                              onsubmit="return confirm('Yakin ingin menghapus user ini?')">
                             @csrf
                             @method('DELETE')
-                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</button>
+                            <button type="submit"
+                                    class="inline-flex items-center gap-1 px-3 py-1 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition text-xs font-medium">
+                                 Hapus
+                            </button>
                         </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 
     <div class="mt-4">
         {{ $users->links() }}

@@ -134,7 +134,7 @@ public function updateOrder()
         $order->status = $newStatus;
         $order->save(); // Jangan lupa simpan perubahannya!
     }
-
+    $this->updateStatus();
     return redirect()->back()->with('success', 'Status pesanan berhasil diperbarui!');
 }
     // Tambahkan halaman success
@@ -146,42 +146,45 @@ public function updateOrder()
 
     public function myOrders()
 {
-     $orders = auth()->user()->orders()->with('items.product')->latest()->paginate(10);
-    return view('users.cekpesanan', compact('orders'));
+     $orderItems = OrderItem::whereHas('order', function ($query) {
+        $query->where('user_id', auth()->id());
+    })
+    ->with(['product', 'order']) // jika kamu ingin akses data produk & ordernya
+    ->latest()
+    ->paginate(10);
+
+return view('users.cekpesanan', compact('orderItems'));
 }
 
 // OrderController.php
-public function cancel($orderId)
+public function cancel($itemId)
 {
+    $item = OrderItem::whereHas('order', function ($query) {
+        $query->where('user_id', auth()->id());
+    })->findOrFail($itemId);
 
-     $order = auth()->user()->orders()->find($orderId);
-
-    // Jika order tidak ditemukan atau pesanan sudah dibatalkan
-    if (!$order || $order->status === 'cancel') {
-        return redirect()->back()->with('error', 'Pesanan tidak ditemukan atau sudah dibatalkan.');
+    if ($item->status === 'cancel') {
+        return redirect()->back()->with('error', 'Item sudah dibatalkan.');
     }
 
-    // Ubah status pesanan menjadi cancelled
-    $order->status = 'cancel';
-    $order->save();
-    // Cari semua item pesanan berdasarkan order_id dan pastikan pesanan milik user yang sedang login
-    $order_items = auth()->user()->orders()->where('id', $orderId)->first()?->items;
+    $item->status = 'cancel';
+    $item->save();
 
-    // Jika order_items tidak ditemukan atau sudah dibatalkan
-    if (!$order_items) {
-        return redirect()->back()->with('error', 'Pesanan tidak ditemukan.');
-    }
+    return redirect()->back()->with('success', 'Item pesanan berhasil dibatalkan.');
+}
 
-    // Perbarui status semua item dalam pesanan menjadi cancelled
-    foreach ($order_items as $item) {
-        if ($item->status !== 'cancel') {
-            $item->status = 'cancel';
-            $item->save(); // Simpan perubahan status
-        }
-    }
 
-    // Redirect kembali dengan pesan sukses
-    return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan.');
+public function updateStatus() {
+    $order_items = OrderItem::all();
+    $order = Order::all();
+
+    $order_items->each(function($o) use($order){
+        $id = $o->order_id;
+        $firstPart = explode('-', $id)[0];
+        $curr_ord = $order->where('id', $firstPart)->first();
+        $curr_ord->status = $o->status;
+        $curr_ord->save();
+    });
 }
 
 

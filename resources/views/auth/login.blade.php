@@ -150,7 +150,7 @@
                     <div class="email">
                         <div class="group-2">
                             <div class="overlap-group">
-                                <input type="email" name="email" class="input-field" placeholder="test1@gmail.com" required value="{{ old('email') }}"/>
+                                <input type="email" name="email" class="input-field" placeholder="Masukkan Email Anda" required value="{{ old('email') }}"/>
                             </div>
                             <div class="text-wrapper-6">Email</div>
                         </div>

@@ -57,10 +57,11 @@ for ($i = 5; $i >= 0; $i--) {
 }   
 
     //latest order
-    $latestOrders = Order::with('user')
+    $latestOrders = Order::with('user','items')
     ->orderByDesc('created_at')
     ->take(5)
     ->get();
+
 
     //low stock
     $lowStockProducts = Product::where('stock', '<', 5)
@@ -79,8 +80,7 @@ for ($i = 5; $i >= 0; $i--) {
         return view('admin.orders', compact('orderItems'));
     }
 
-    public function cekrole()
-    {
+   
 
-    }
+    
 }
