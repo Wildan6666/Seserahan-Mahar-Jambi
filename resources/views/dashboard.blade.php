@@ -26,13 +26,13 @@
 <body class="bg-white">
     
     <!-- Hero Section -->
-    <section class="hero-bg bg-gradient-to-r from-gray-300 to-white">
+    <section class="hero-bg bg-gradient-to-r from-blue-100 to-white">
         <div class="container mx-auto px-4 sm:px-6 py-12">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="w-full md:w-1/2 mb-8 md:mb-0">
                     <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Mahar Kustom Spesial</h1>
                     <p class="text-gray-600 mb-6">Hadirkan kenangan indah pernikahan dengan mahar kustom yang dirancang khusus sesuai cerita cinta Anda.</p>
-                    <a href="#" class="bg-primary text-white px-5 py-2.5 rounded-button inline-flex items-center whitespace-nowrap hover:bg-opacity-90 transition">
+                    <a href="https://wa.me/+6281367047864" class="bg-primary text-white px-5 py-2.5 rounded-button inline-flex items-center whitespace-nowrap hover:bg-opacity-90 transition">
                         <i class="ri-whatsapp-line mr-2"></i>
                         WHATSAPP +
                     </a>
@@ -40,7 +40,7 @@
                 <div class="w-full md:w-1/2 flex justify-center">
                     <div class="relative">
                         <img src="https://cf.shopee.co.id/file/f028b46fb2ca09ba3892928dc358532f" alt="Mahar Kustom" class="rounded-lg shadow-lg w-full max-w-md">
-                        <a href="#" class="absolute bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-button whitespace-nowrap hover:bg-opacity-90 transition">DETAILS</a>
+
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="p-5">
                         <h3 class="text-lg font-bold mb-1">{{ $product->name }}</h3>
-                        <p class="text-primary font-semibold">IDR {{ number_format($product->price, 0, ',', '.') }}</p>
+                        <p class="text-primary font-semibold text-teal-600">IDR {{ number_format($product->price, 0, ',', '.') }}</p>
                         <div class="mt-3 flex justify-between">
                             <a href="{{ route('users.produk.show', $product->slug) }}" class="text-gray-600 hover:text-primary transition flex items-center text-sm">
                                 <i class="ri-eye-line mr-1"></i> Detail

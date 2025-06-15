@@ -14,12 +14,12 @@
 
     nav a:hover {
         background-color: #bbf7d0; /* light teal (more subtle green) */
-        color: #16a34a; /* teal-500 (lighter green for hover) */
+        color:  #bbf7d0; /* teal-500 (lighter green for hover) */
     }
 
     nav a.active {
         background-color: #d1fae5; /* lighter teal for active background */
-        color: #16a34a; /* teal-500 for active text */
+        color:rgb(47, 192, 100); /* teal-500 for active text */
         border-bottom: 2px solid #16a34a; /* teal-500 for border */
     }
 
@@ -29,8 +29,8 @@
     }
 
     nav button.inline-flex.items-center:hover {
-        background-color: #e2e8f0; /* slate-200 */
-        color: #16a34a; /* teal-500 */
+        background-color: #d1fae5; /* slate-200 */
+        color:   #334155; /* teal-500 */
     }
 
     /* Mobile menu background */
@@ -40,7 +40,7 @@
 
     nav .sm\:hidden a:hover {
         background-color: #bbf7d0; /* light teal for hover */
-        color: #16a34a; /* teal-500 */
+        color:  #bbf7d0; /* teal-500 */
     }
 </style>
 
@@ -56,7 +56,7 @@
 
 
 
-<nav x-data="{ open: false }" class="bg-slate-200 text-gray-700 border-b border-slate-300 shadow-md">
+<nav x-data="{ open: false }" class="bg-blue-100 text-blue-900 border-b border-blue-200 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
             <div class="flex items-center">
@@ -99,7 +99,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-600 bg-white hover:text-gray-800 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-600 bg-white hover:text-blue-800 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"

@@ -18,7 +18,7 @@
     <!-- Sidebar -->
     <aside class="w-60 bg-gray-700 text-white flex flex-col shadow-xl" data-aos="fade-right">
         <div class="p-6 border-b border-gray-700 flex items-center gap-2">
-            <span class="text-2xl">🛠️</span>
+            <span class="text-2xl">#</span>
             <h2 class="text-xl font-bold tracking-wide">Admin Panel</h2>
         </div>
 

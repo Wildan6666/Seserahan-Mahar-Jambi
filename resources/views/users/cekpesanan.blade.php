@@ -1,48 +1,79 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-        <h2 class="text-xl font-semibold text-gray-800 mb-6">Pesanan Saya</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 border-b pb-2">Pesanan Saya</h2>
 
         @forelse ($orderItems as $item)
-            <div class="bg-white shadow-md rounded-lg p-6 mb-6 border">
-                <div class="flex justify-between items-center mb-4">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 transition hover:shadow-lg hover:scale-[1.01] duration-300">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4">
                     <div>
-                        <p class="text-sm text-gray-600">ID: {{ $item->id }}</p>
-                        <p class="text-sm text-gray-600">Status: 
-                            <span class="font-semibold capitalize">
-                                {{ $item->status }}
-                            </span>
+                        <p class="text-sm text-gray-500 mb-1">
+                            <span class="font-semibold">ID:</span> {{ $item->id }}
                         </p>
-                        <p class="text-sm text-gray-600">Tanggal: {{ $item->created_at->format('d M Y, H:i') }}</p>
+                        <p class="text-sm text-gray-500">
+                            <span class="font-semibold">Tanggal:</span> {{ $item->created_at->format('d M Y, H:i') }}
+                        </p>
                     </div>
 
                     @if (in_array($item->status, ['pending', 'menunggu']))
                         <form method="POST" action="{{ route('orders.cancel', $item->id) }}">
                             @csrf
                             @method('PATCH')
-                            <button type="submit" class="text-sm text-red-600 hover:underline">Batalkan</button>
+                            <button 
+                                type="submit"
+                                class="mt-2 sm:mt-0 px-4 py-2 bg-red-500 text-white text-sm font-semibold rounded-lg hover:bg-red-600 transition">
+                                Batalkan
+                            </button>
                         </form>
                     @endif
                 </div>
 
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="font-medium">{{ $item->product->name }}</p>
-                        <p class="text-sm text-gray-600">Jumlah: {{ $item->quantity }}</p>
-                        <p class="text-sm text-gray-600">Status Item: 
-                            <span class="font-semibold capitalize">{{ $item->status }}</span>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-semibold text-gray-800">{{ $item->product->name }}</h3>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-medium">Jumlah:</span> {{ $item->quantity }}
+                        </p>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-medium">Status pembayaran:</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold
+                                {{ $item->status == 'pending' ? 'bg-blue-100 text-blue-700' :
+                                   ($item->status == 'settlement' ? 'bg-green-100 text-green-700' :
+                                   ($item->status == 'cancel' ? 'bg-red-100 text-red-700' : 'bg-gray-200 text-gray-700')) }}">
+                                {{ ucfirst($item->status) }}
+                            </span>
                         </p>
                     </div>
-                    <div class="text-sm text-gray-800 font-semibold">
+
+                    <div class="text-lg text-gray-800 font-semibold">
                         Rp{{ number_format($item->price * $item->quantity, 0, ',', '.') }}
                     </div>
                 </div>
             </div>
         @empty
-            <p class="text-gray-600">Belum ada pesanan.</p>
+            <div class="text-center py-10">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player
+                    src="https://assets6.lottiefiles.com/packages/lf20_V9t630.json"
+                    background="transparent"
+                    speed="1"
+                    class="mx-auto w-64 h-64 mb-6"
+                    loop
+                    autoplay>
+                </lottie-player>
+
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">Belum ada pesanan</h3>
+                <p class="text-gray-500 mb-4">Yuk, mulai belanja dan pesan produk favoritmu!</p>
+                <a href="{{ route('users.katalog') }}"
+                   class="inline-block px-5 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition">
+                    Kembali ke Katalog
+                </a>
+            </div>
         @endforelse
 
-        <div class="mt-4">
-            {{ $orderItems->links() }}
-        </div>
+        @if ($orderItems->hasPages())
+            <div class="mt-6">
+                {{ $orderItems->links() }}
+            </div>
+        @endif
     </div>
 </x-app-layout>

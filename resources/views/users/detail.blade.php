@@ -1,5 +1,6 @@
 <x-app-layout>
-    <div class="grid md:grid-cols-2 gap-12 px-4 sm:px-6 lg:px-8 py-12">
+   
+<div class="grid md:grid-cols-2 gap-12 px-4 sm:px-6 lg:px-8 py-12">
         <!-- Product Image -->
         <div class="flex justify-center mb-6 md:mb-0">
             <div class="relative group">
@@ -30,7 +31,7 @@
                 @csrf
                 <div class="flex items-center gap-4 mb-6">
                     <input type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}" class="w-20 border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500" />
-                    <button type="submit" class="bg-teal-600 text-white px-6 py-3 rounded-md text-lg hover:bg-teal-700 transition duration-200 ease-in-out">
+                    <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-md text-lg hover:bg-blue-400 transition duration-200 ease-in-out">
                         Tambah ke Keranjang
                     </button>
                 </div>
