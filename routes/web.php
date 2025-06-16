@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/orders', [AdminController::class, 'index'])->name('admin.orders');
     Route::post('/orders/refresh', [OrderController::class, 'updateorder'])->name('admin.orders.refresh');
+    
 });
 
 Route::get('/pesanan-saya', [OrderController::class, 'myOrders'])->name('users.cekpesanan');
@@ -87,6 +89,15 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->group(functio
     Route::put('/usermanajemen/{user}', [UserController::class, 'update'])->name('admin.usermanajemen.update');
     Route::delete('/usermanajemen/{user}', [UserController::class, 'destroy'])->name('admin.usermanajemen.destroy');
 });
+
+
+Route::get('/order-detail/{id}', [OrderDetailController::class, 'show'])
+    ->middleware('auth') // jika perlu login
+    ->name('products.detail');
+
+    Route::get('/order-detail/{id}', [OrderDetailController::class, 'show'])->name('products.detail');
+
+
 
 
 require __DIR__.'/auth.php';

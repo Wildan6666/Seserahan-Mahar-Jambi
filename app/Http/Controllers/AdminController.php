@@ -76,8 +76,9 @@ for ($i = 5; $i >= 0; $i--) {
 
     public function index()
     {
-        $orderItems = OrderItem::with('user')->latest()->paginate(10);
-        return view('admin.orders', compact('orderItems'));
+         $orders = Order::with('user');
+        $orderItems = OrderItem::with('user' ,'product', 'order')->latest()->paginate(10);
+        return view('admin.orders', compact('orderItems','orders'));
     }
 
    
