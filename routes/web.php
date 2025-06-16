@@ -44,7 +44,7 @@ Route::get('/katalog/{slug}', [UserProductController::class, 'show'])->name('use
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
 // Semua produk hanya bisa diakses user yang login
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin/products', [ProductController::class, 'index'])->name('products.index');
     Route::resource('products', ProductController::class);
     Route::get('/admin/products/search', [ProductController::class, 'ajaxSearch'])->name('products.ajax-search');
@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('/orders', [AdminController::class, 'index'])->name('admin.orders');
     Route::post('/orders/refresh', [OrderController::class, 'updateorder'])->name('admin.orders.refresh');
 });

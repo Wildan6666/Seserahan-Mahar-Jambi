@@ -120,7 +120,7 @@
                     <div class="flex items-center">
                         <div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold">A</div>
                         <div class="ml-3">
-                            <h4 class="font-semibold text-sm">Ahmad Fauzi</h4>
+                            <h4 class="font-semibold text-sm">Muhammad Raka Pasha</h4>
                             <p class="text-xs text-gray-500">Jambi</p>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="flex items-center">
                         <div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold">S</div>
                         <div class="ml-3">
-                            <h4 class="font-semibold text-sm">Siti Nurhaliza</h4>
+                            <h4 class="font-semibold text-sm">Muhammad Radhiy Hadrawi</h4>
                             <p class="text-xs text-gray-500">Jambi</p>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                     <div class="flex items-center">
                         <div class="w-9 h-9 bg-primary rounded-full flex items-center justify-center text-white font-bold">R</div>
                         <div class="ml-3">
-                            <h4 class="font-semibold text-sm">Rudi Hartono</h4>
+                            <h4 class="font-semibold text-sm"> Farhan Bagaskara Putra</h4>
                             <p class="text-xs text-gray-500">Jambi</p>
                         </div>
                     </div>

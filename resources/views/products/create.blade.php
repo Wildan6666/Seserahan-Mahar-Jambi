@@ -74,7 +74,7 @@
         <div class="text-right pt-4">
             <button type="submit"
                 class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow transition duration-150">
-                💾 Simpan Produk
+                 Simpan Produk
             </button>
         </div>
     </form>

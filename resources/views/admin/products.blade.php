@@ -64,9 +64,7 @@
         <a href="{{ route('products.edit', $product->id) }}"
            class="flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition"
            title="Edit Produk">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M17.414 2.586a2 2 0 010 2.828L7.828 13H5v-2l9.586-9.586a2 2 0 012.828 0z" clip-rule="evenodd" />
-            </svg>
             <span>Edit</span>
         </a>
 
@@ -78,9 +76,9 @@
             <button type="submit"
                     class="flex items-center gap-2 px-3 py-1.5 bg-red-100 text-red-700 rounded-full hover:bg-red-200 transition"
                     title="Hapus Produk">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+           
                     <path fill-rule="evenodd" d="M6 2a2 2 0 012-2h4a2 2 0 012 2h6a2 2 0 012 2v14a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h6z" clip-rule="evenodd" />
-                </svg>
+
                 <span>Hapus</span>
             </button>
         </form>
