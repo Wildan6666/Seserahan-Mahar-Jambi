@@ -49,21 +49,34 @@
                         Rp{{ number_format($item->price * $item->quantity, 0, ',', '.') }}
                     </div>
                     <button 
-    @click.prevent="fetch('{{ route('products.detail', $item->order_id) }}')
-        .then(res => res.json()) 
-        .then(data => { 
-            selectedItem = data; 
-            showModal = true; 
-        })"
-    class="flex items-center px-3 py-1.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-md shadow-sm transition-all duration-200 hover:bg-blue-100 hover:shadow-md">
-    <i class="ri-eye-fill mr-1 text-blue-500"></i> Detail
-</button>
-
+                        @click.prevent="fetch('{{ route('products.detail', $item->order_id) }}')
+                            .then(res => res.json()) 
+                            .then(data => { 
+                                selectedItem = data; 
+                                showModal = true; 
+                            })"
+                        class="flex items-center px-3 py-1.5 text-sm font-semibold text-blue-600 bg-blue-50 rounded-md shadow-sm transition-all duration-200 hover:bg-blue-100 hover:shadow-md">
+                        <i class="ri-eye-fill mr-1 text-blue-500"></i> Detail
+                    </button>
                 </div>
             </div>
         </div>
     @empty
-        {{-- kosong --}}
+        <div class="flex flex-col items-center justify-center mt-20 space-y-4 text-center">
+            <!-- Ikon SVG keranjang kosong -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h11a1 1 0 001-1l.1-.6M7 13l.1-.4M9 21a1 1 0 11-2 0 1 1 0 012 0zm10 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+
+            <p class="text-lg font-semibold text-gray-700">Pesanan Anda Kosong</p>
+            <p class="text-sm text-gray-500">Silakan lakukan pembelian terlebih dahulu untuk melihat daftar pesanan Anda.</p>
+
+            <a href="{{ route('users.katalog') }}"
+               class="inline-block mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                Mulai Belanja
+            </a>
+        </div>
     @endforelse
 
     @if ($orderItems->hasPages())
@@ -93,6 +106,4 @@
         </div>
     </div>
 </div>
-
-<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </x-app-layout>

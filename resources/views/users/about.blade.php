@@ -59,17 +59,28 @@
             </div>
         </div>
 
-        <!-- Google Maps -->
-        <div class="max-w-6xl mx-auto mt-20" data-aos="fade-up">
-            <h3 class="text-2xl font-semibold text-center mb-4">Lokasi Kami</h3>
-            <p class="text-center text-gray-600 mb-6">Silakan kunjungi toko kami langsung di lokasi berikut ini:</p>
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3988.1888382953516!2d103.67054367496632!3d-1.6375728983472078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMzgnMTUuMyJTIDEwM8KwNDAnMjMuMiJF!5e0!3m2!1sid!2sid!4v1749307511214!5m2!1sid!2sid"
-                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
+        <div class="relative rounded-xl overflow-hidden shadow-lg mt-16">
+    <!-- Link transparan di atas iframe -->
+    <a href="https://www.google.com/maps?q=-1.6375728983472078,103.67054367496632"
+       target="_blank"
+       class="absolute inset-0 z-10"
+       title="Buka di Google Maps">
+        <span class="sr-only">Buka di Google Maps</span>
+    </a>
+
+    <!-- Iframe Google Maps -->
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3988.1888382953516!2d103.67054367496632!3d-1.6375728983472078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMzgnMTUuMyJTIDEwM8KwNDAnMjMuMiJF!5e0!3m2!1sid!2sid!4v1749307511214!5m2!1sid!2sid"
+        width="100%" height="400"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="relative z-0 pointer-events-none">
+    </iframe>
+</div>
+
+
 
         <!-- CTA / Ajakan -->
         <div class="mt-20 text-center" data-aos="fade-up">

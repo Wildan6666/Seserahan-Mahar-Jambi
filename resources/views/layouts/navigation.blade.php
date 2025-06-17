@@ -60,9 +60,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
             <div class="flex items-center">
-                <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800 select-none">
-                    Mahar Jambi
-                </a>
+                <span class="text-2xl font-bold text-gray-800 select-none">
+                     Mahar Jambi
+                </span>
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:space-x-8 ms-auto">

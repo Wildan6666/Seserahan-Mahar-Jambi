@@ -21,6 +21,12 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function order()
+{
+    return $this->belongsTo(Order::class, 'order_id', 'midtrans_order_id');
+}
+
+
 
     
 
